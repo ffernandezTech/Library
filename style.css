@@ -1,0 +1,25 @@
+*,
+*::after,
+*::before{
+
+
+    margin: 0px;
+    padding: 0px;
+    box-sizing: 0px;
+}
+
+
+.mainContainer{
+    width: 750;
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+
+.bookEntry{
+
+    display: grid;
+
+
+}

@@ -38,30 +38,49 @@ addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 
 
-myLibrary.forEach( item =>{
-    console.log(`ID: ${item.id}, Title: ${item.name}, Author: ${item.author} ,Number of Pages: ${item.pages},
-        Status: ${item.status} 
-        `)
-});
+// myLibrary.forEach( item =>{
+//     console.log(`ID: ${item.id}, Title: ${item.name}, Author: ${item.author} ,Number of Pages: ${item.pages},
+//         Status: ${item.status} 
+//         `)
+// });
 
 
 const mainDisplay = document.querySelector('.mainContainer');
 const newBookBtn = document.querySelector('.CreateBook');
-
+const myform = document.getElementById('bookEntry');
+let count=0;
 
 newBookBtn.addEventListener('click', ()=>{
 
 
-    const myform = document.getElementById('bookEntry');
+   //Issue its working, but only after the second click.
     //  alert('Working');
 
-    if(myform.checkVisibility)
+    if(myform.style.display === 'none')
     {
-        // alert('its false');
-        myform.style.visibility= 'visible';
+        alert('its true');
+        myform.style.display= 'block';
+    }
+    else
+    {
+         alert('its false');
+         myform.style.display='none'
     }
 
-   
+    // if(myform.checkVisibility() === false)
+    // {
+
+    //     console.log(myform.checkVisibility());
+    //     alert('its false');
+    //     myform.style.visibility= 'visible';
+    // }
+    // else {
+    //     console.log(myform.checkVisibility({visibilityProperty:true}));
+    //     alert('its true');
+    //     myform.style.visibility= 'hidden';
+    // }
+ 
+
 
 });
  

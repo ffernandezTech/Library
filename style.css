@@ -32,7 +32,7 @@ button{
 
 #bookEntry{
 
-    visibility:hidden;
+    display: none;
 }
 
 .bookEntryLegend{

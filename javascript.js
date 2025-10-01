@@ -48,6 +48,9 @@ addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 const mainDisplay = document.querySelector('.mainContainer');
 const newBookBtn = document.querySelector('.CreateBook');
 const myform = document.getElementById('bookEntry');
+
+//This works but I dont like it.
+myform.style.display='none';
 let count=0;
 
 newBookBtn.addEventListener('click', ()=>{
@@ -55,16 +58,17 @@ newBookBtn.addEventListener('click', ()=>{
 
    //Issue its working, but only after the second click.
     //  alert('Working');
+    
 
     if(myform.style.display === 'none')
     {
-        alert('its true');
+        alert('its not');
         myform.style.display= 'block';
     }
     else
     {
-         alert('its false');
-         myform.style.display='none'
+         alert('its block');
+         myform.style.display='none';
     }
 
     // if(myform.checkVisibility() === false)

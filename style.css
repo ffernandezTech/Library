@@ -27,15 +27,36 @@ button{
      width: 100px;
     height: 50px;
 }
-.bookEntry{
+
+.bookEntryLegend{
 
     
-    border: black 2px solid;
-    width: 400px;
-    height: 450px;
-    display: grid;
-    grid-auto-flow: row;
 
+    
+    
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: repeat(3, 80px);
+
+}
+.bookInfo{
+    /* border: solid 2px blue; */
+    height: 30px;
+    justify-self: center;
+    align-self: center;
+    /* border: solid 1px red; */
+
+   
+
+
+
+}
+
+label{
+    display: inline-block;
+    min-width: 50px;
+    text-align: right;
+    /* border: solid green 5px; */
 
 
 }

@@ -48,10 +48,20 @@ myLibrary.forEach( item =>{
 const mainDisplay = document.querySelector('.mainContainer');
 const newBookBtn = document.querySelector('.CreateBook');
 
+
 newBookBtn.addEventListener('click', ()=>{
 
 
+    const myform = document.getElementById('bookEntry');
+    //  alert('Working');
 
+    if(myform.checkVisibility)
+    {
+        // alert('its false');
+        myform.style.visibility= 'visible';
+    }
+
+   
 
 });
  

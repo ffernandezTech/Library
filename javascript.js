@@ -47,22 +47,19 @@ addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 const mainDisplay = document.querySelector('.mainContainer');
 const newBookBtn = document.querySelector('.CreateBook');
-const myform = document.getElementById('bookEntry');
 
-//This works but I dont like it.
-myform.style.display='none';
-let count=0;
+
+
+const myform = document.getElementById('bookEntry');
+const myFormCss = window.getComputedStyle(myform);
+
+
 
 newBookBtn.addEventListener('click', ()=>{
 
-
-   //Issue its working, but only after the second click.
-    //  alert('Working');
-    
-
-    if(myform.style.display === 'none')
+    if(myFormCss.getPropertyValue('display') === 'none')
     {
-        alert('its not');
+        alert('display test');
         myform.style.display= 'block';
     }
     else
@@ -71,19 +68,14 @@ newBookBtn.addEventListener('click', ()=>{
          myform.style.display='none';
     }
 
-    // if(myform.checkVisibility() === false)
-    // {
 
-    //     console.log(myform.checkVisibility());
-    //     alert('its false');
-    //     myform.style.visibility= 'visible';
-    // }
-    // else {
-    //     console.log(myform.checkVisibility({visibilityProperty:true}));
-    //     alert('its true');
-    //     myform.style.visibility= 'hidden';
-    // }
- 
+
+
+
+
+
+
+
 
 
 });

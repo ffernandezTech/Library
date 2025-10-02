@@ -10,16 +10,19 @@
 
     <div class="mainContainer">
         
-        <div class="buttonContainer"> 
-            <button type="button" class="CreateBook">Add Book</button>
-        </div>
+       <div>
+            <div class="buttonContainer"> 
+                    <button type="button" id="CreateBook">Add Book</button>
+            </div>
+       </div>
 
 
 
-        <form id="bookEntry">
+        <form id="bookEntry" action="" method="get">
 
             <legend class="bookEntryLegend">
-                <div class="bookInfo">
+                
+            <div class="bookInfo">
                 <label for="id">ID: </label>
                 <input type="text" id='id' name="bookID" >
             </div>
@@ -45,7 +48,7 @@
                 <input type="text" id="Status" name="bookStatus">
             </div>
 
-            <!-- <button type="submit"> Submit</button> -->
+            <button type="button" class="submitBtn"> Submit</button>
             </legend>
 
             

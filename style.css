@@ -58,13 +58,28 @@ dialog h1{
 table{
 
     border: solid 3px black;
-    align-self:flex-start
+    align-self:flex-start;
+
+    border-collapse: collapse;
+    display: hidden;
     
 }
 th{
-    width: 150px;
+    width: 250px;
     text-align: center;
+    border-right: black 2px solid;
+    display: hidden;
    
+}
+tr{
+    width: 250px;
+    text-align: center;
+    border-bottom: black 2px solid;
+    
+}
+td{
+    border-right: black 2px solid;
+    
 }
 
 .bookEntryLegend{

@@ -17,9 +17,9 @@ function Book(name, author, pages, status){
 
 
 
-const book1 = new Book('Eragon', 'Christopher Paolini', 450, 'read');
+// const book1 = new Book('Eragon', 'Christopher Paolini', 450, 'read');
 
-myLibrary.push(book1);
+// myLibrary.push(book1);
 
 
 function addBookToLibrary(name, author, pages, status){
@@ -31,7 +31,7 @@ function addBookToLibrary(name, author, pages, status){
 
 }
 
-
+addBookToLibrary('Eragon', 'Christopher Paolini', 450, 'read');
 addBookToLibrary('Marsfield Park', 'Jane Austen', 500, 'reading');
 addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
@@ -89,5 +89,8 @@ submitBtn.addEventListener('click', (e)=>{
     
 
 });
+
+
+
  
 

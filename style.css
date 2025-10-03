@@ -32,7 +32,7 @@ button{
 
 #bookEntry{
 
-    display: none;
+    /* display: none; */
 }
 
 .bookEntryLegend{
@@ -69,14 +69,20 @@ legend :nth-child(5){
 
 
 .submitBtn{
-    width: 400px;
-    height: 50px;
+    
 
 
     grid-row: 4/5;
-    grid-column: 1/3;
+    grid-column: 1/2;
 
    justify-self: center;
+    align-self: center;
+}
+
+.cancelBtn{
+   grid-row: 4/5;
+    grid-column: 2/3; 
+    justify-self: center;
     align-self: center;
 }
 

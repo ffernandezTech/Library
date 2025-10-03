@@ -48,6 +48,7 @@ addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 const mainDisplay = document.querySelector('.mainContainer');
 const newBookBtn = document.getElementById('CreateBook');
 const submitBtn = document.querySelector('.submitBtn');
+const diag = document.querySelector('dialog');
 
 
 
@@ -58,24 +59,32 @@ const myFormCss = window.getComputedStyle(myform);
 
 newBookBtn.addEventListener('click', (e)=>{
 
-    if(myFormCss.getPropertyValue('display') === 'none')
-    {
-        // alert('display test');
-        myform.style.display= 'block';
-    }
-    else
-    {
-         alert('its block');
-         myform.style.display='none';
-    }
-    e.stopImmediatePropagation();
+    // if(myFormCss.getPropertyValue('display') === 'none')
+    // {
+    //     // alert('display test');
+    //     myform.style.display= 'block';
+    // }
+    // else
+    // {
+    //     //  alert('its block');
+    //      myform.style.display='none';
+    // }
+    // e.stopImmediatePropagation();
+   
+    diag.showModal();
+
+
+
+
+
 
 });
 
 submitBtn.addEventListener('click', (e)=>{
 
-    alert('STOP');
+    // alert('STOP');
     e.stopImmediatePropagation();
+    e.preventDefault();
 
     
 

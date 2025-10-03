@@ -90,7 +90,28 @@ submitBtn.addEventListener('click', (e)=>{
 
 });
 
+function createTable(){
 
 
+
+    
+myLibrary.forEach( item =>{
+    console.log(`ID: ${item.id}, Title: ${item.name}, Author: ${item.author} ,Number of Pages: ${item.pages},
+        Status: ${item.status} 
+        `)
+});
+
+
+
+
+}
+
+
+
+const btnDisplay = document.querySelector('.DisplayLibrary');
+
+
+
+btnDisplay.addEventListener('click',)
  
 

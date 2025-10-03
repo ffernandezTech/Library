@@ -53,6 +53,15 @@ dialog h1{
     border-bottom: black 3px solid;
     text-align: center;
 }
+table{
+
+    border: solid 3px black
+}
+th{
+    width: 150px;
+    text-align: center;
+   
+}
 
 .bookEntryLegend{
 

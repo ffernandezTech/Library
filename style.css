@@ -15,7 +15,7 @@
     border: red 2px solid;
 
     display: grid;
-    grid-template-rows: 300px 1fr;
+    grid-template-rows: 100px 400px;
     justify-content: center;
     align-items: center;
 
@@ -23,7 +23,8 @@
 }
 .buttonContainer{
     display: grid;
-    justify-content: center;
+   
+    justify-items: center;
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
 }
@@ -36,6 +37,7 @@ button{
 
     display: none;
 } */
+
 
 
 dialog{
@@ -55,7 +57,9 @@ dialog h1{
 }
 table{
 
-    border: solid 3px black
+    border: solid 3px black;
+    align-self:flex-start
+    
 }
 th{
     width: 150px;
@@ -106,6 +110,7 @@ legend :nth-child(5){
    justify-self: center;
     align-self: center;
 }
+
 
 .cancelBtn{
    grid-row: 4/5;

@@ -48,6 +48,7 @@ addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 const mainDisplay = document.querySelector('.mainContainer');
 const newBookBtn = document.getElementById('CreateBook');
 const submitBtn = document.querySelector('.submitBtn');
+const btnDisplay = document.getElementById('DisplayLibrary');
 const diag = document.querySelector('dialog');
 
 
@@ -90,28 +91,52 @@ submitBtn.addEventListener('click', (e)=>{
 
 });
 
-function createTable(){
+const tableBody = document.querySelector('tbody');
 
+function fillTable(){
 
+        myLibrary.forEach( item =>{
+          
+            const row = document.createElement('tr');
 
-    
-myLibrary.forEach( item =>{
-    console.log(`ID: ${item.id}, Title: ${item.name}, Author: ${item.author} ,Number of Pages: ${item.pages},
-        Status: ${item.status} 
-        `)
-});
+            const cell1 = document.createElement('td');
+            cell1.textContent = item.id;
+            row.appendChild(cell1);
 
+            const cell2 = document.createElement('td');
+            cell2.textContent = item.name;
+            row.appendChild(cell2);
 
+            const cell3 = document.createElement('td');
+            cell3.textContent = item.author;
+            row.appendChild(cell3);
 
+            const cell4 = document.createElement('td');
+            cell4.textContent = item.pages;
+            row.appendChild(cell4);
+
+            const cell5 = document.createElement('td');
+            cell5.textContent = item.status;
+            row.appendChild(cell5);
+
+            tableBody.appendChild(row);
+        });
+
+        // alert('Currently in function');
 
 }
 
 
 
-const btnDisplay = document.querySelector('.DisplayLibrary');
 
 
 
-btnDisplay.addEventListener('click',)
- 
+btnDisplay.addEventListener('click', fillTable);
+
+
+
+
+
+
+
 

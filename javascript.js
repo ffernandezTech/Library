@@ -96,17 +96,85 @@ submitBtn.addEventListener('click', (e)=>{
 
 const tableBody = document.querySelector('tbody');
 
-function fillTable(){
+// function fillTable(){
 
 
-    if(myTableCss.getPropertyValue('display') === 'none')
-    {
-        myTable.style.display = 'block';
+//     if(myTableCss.getPropertyValue('display') === 'none')
+//     {
+//         myTable.style.display = 'block';
         
-         myLibrary.forEach( item =>{
+//          myLibrary.forEach( item , index =>{
+          
+            
+//             const row = document.createElement('tr');
+
+//             const cell1 = document.createElement('td');
+//             cell1.textContent = item.id;
+//             row.appendChild(cell1);
+
+//             const cell2 = document.createElement('td');
+//             cell2.textContent = item.name;
+//             row.appendChild(cell2);
+
+//             const cell3 = document.createElement('td');
+//             cell3.textContent = item.author;
+//             row.appendChild(cell3);
+
+//             const cell4 = document.createElement('td');
+//             cell4.textContent = item.pages;
+//             row.appendChild(cell4);
+
+//             const cell5 = document.createElement('td');
+//             cell5.textContent = item.status;
+//             row.appendChild(cell5);
+
+//             const cell6 = document.createElement('td');
+//             cell6.textContent = 
+
+//             tableBody.appendChild(row);
+//         });
+
+
+//     }
+//     else{
+//         myTable.style.display = 'none';
+//     }
+
+
+//     console.log(myLibrary);
+       
+
+//         // alert('Currently in function');
+
+// }
+
+
+
+
+
+
+
+
+
+
+
+// btnDisplay.addEventListener('click', fillTable);
+
+
+
+
+function fillTable(){
+         myLibrary.forEach( (item , index) =>{
           
             
             const row = document.createElement('tr');
+            row.setAttribute('id', 'row'+ index);
+            if(index%2 !== 0)
+            {
+                row.setAttribute('style', 'background:lightblue');
+
+
+            }
 
             const cell1 = document.createElement('td');
             cell1.textContent = item.id;
@@ -128,34 +196,45 @@ function fillTable(){
             cell5.textContent = item.status;
             row.appendChild(cell5);
 
+            const cell6 = document.createElement('td');
+            let btn = document.createElement('input');
+            btn.type= 'button';
+            btn.className = 'btn'+index;
+            btn.value = 'Delete';
+        
+            btn.addEventListener('click', () =>{
+
+
+                // console.log(myLibrary[index]);
+                delete myLibrary[index];
+                // console.log(myLibrary[index]);
+                tableBody.textContent='';
+                fillTable();
+
+
+                
+                alert('hello ' + index);
+
+
+            })
+            cell6.appendChild(btn);
+
+            row.appendChild(cell6);
+
+
+
+         
+
             tableBody.appendChild(row);
         });
 
-
-    }
-    else{
-        myTable.style.display = 'none';
-    }
-
-
-    console.log(myLibrary);
        
 
         // alert('Currently in function');
 
 }
 
-
-
-
-
-
-btnDisplay.addEventListener('click', fillTable);
-
-
-
-
-
+fillTable();
 
 
 

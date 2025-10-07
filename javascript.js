@@ -56,6 +56,9 @@ const diag = document.querySelector('dialog');
 const myform = document.getElementById('bookEntry');
 const myFormCss = window.getComputedStyle(myform);
 
+const myTable = document.querySelector('table');
+const myTableCss= window.getComputedStyle(myTable);
+
 
 
 newBookBtn.addEventListener('click', (e)=>{
@@ -95,8 +98,14 @@ const tableBody = document.querySelector('tbody');
 
 function fillTable(){
 
-        myLibrary.forEach( item =>{
+
+    if(myTableCss.getPropertyValue('display') === 'none')
+    {
+        myTable.style.display = 'block';
+        
+         myLibrary.forEach( item =>{
           
+            
             const row = document.createElement('tr');
 
             const cell1 = document.createElement('td');
@@ -121,6 +130,16 @@ function fillTable(){
 
             tableBody.appendChild(row);
         });
+
+
+    }
+    else{
+        myTable.style.display = 'none';
+    }
+
+
+    console.log(myLibrary);
+       
 
         // alert('Currently in function');
 

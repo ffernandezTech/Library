@@ -61,7 +61,7 @@ table{
     align-self:flex-start;
 
     border-collapse: collapse;
-    display: hidden;
+    display: none;
     
 }
 th{

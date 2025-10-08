@@ -15,6 +15,24 @@ function Book(name, author, pages, status){
 
 }
 
+Book.prototype.changeStatus = function(){
+
+    // console.log('prototype');
+
+    if(this.status ==='read')
+    {
+        return this.status = 'reading';
+    }
+    else if(this.status === 'reading')
+    {
+        return this.status = 'read';
+    }
+}
+
+
+
+
+
 
 
 // const book1 = new Book('Eragon', 'Christopher Paolini', 450, 'read');
@@ -34,6 +52,7 @@ function addBookToLibrary(name, author, pages, status){
 addBookToLibrary('Eragon', 'Christopher Paolini', 450, 'read');
 addBookToLibrary('Marsfield Park', 'Jane Austen', 500, 'reading');
 addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
+
 
 
 
@@ -166,7 +185,9 @@ const tableBody = document.querySelector('tbody');
 function fillTable(){
          myLibrary.forEach( (item , index) =>{
           
-            
+            // console.log(myLibrary.length)
+
+            // console.log(myLibrary);
             const row = document.createElement('tr');
             row.setAttribute('id', 'row'+ index);
             if(index%2 !== 0)
@@ -174,6 +195,10 @@ function fillTable(){
                 row.setAttribute('style', 'background:lightblue');
 
 
+            }
+            else if(myLibrary.length<2 && index === 1)
+            {
+                row.setAttribute('style', 'background:lightblue');
             }
 
             const cell1 = document.createElement('td');
@@ -206,20 +231,51 @@ function fillTable(){
 
 
                 // console.log(myLibrary[index]);
-                delete myLibrary[index];
+                myLibrary.splice(index,1)
                 // console.log(myLibrary[index]);
-                tableBody.textContent='';
-                fillTable();
+            //   tableBody.deleteRow(index);
+
+
+            //This works, but I dont like it. Basically clearning and recreating
+            //The whole table with the changes made...
+              tableBody.innerHTML='';
+              fillTable();
+
+            //   console.log(index);
+                
 
 
                 
-                alert('hello ' + index);
+                // alert('hello ' + index);
 
 
             })
             cell6.appendChild(btn);
-
             row.appendChild(cell6);
+
+
+            const cell7 = document.createElement('td');
+            let btn2 = document.createElement('input');
+            btn2.type = 'button';
+            btn2.className ='btn2-'+index;
+            btn2.value = 'Change Status';
+            btn2.addEventListener('click', ()=>{
+
+                // console.log(item.name);
+                item.changeStatus();
+
+                // console.log(myLibrary[index]);
+
+                tableBody.innerHTML='';
+                fillTable();
+            })
+
+
+            cell7.append(btn2);
+            row.appendChild(cell7);
+
+
+            
 
 
 

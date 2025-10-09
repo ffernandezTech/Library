@@ -49,8 +49,17 @@ table button{
 
 
 dialog{
-    left: 20%;
-    top: 20%;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    margin: auto;
+
+
+
     border-radius: 5px;
     border: none;
 

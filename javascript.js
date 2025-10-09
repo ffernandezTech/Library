@@ -76,17 +76,7 @@ newBookBtn.addEventListener('click', (e)=>{
     diag.showModal();
 });
 
-submitBtn.addEventListener('click', (e)=>{
 
-    // alert('STOP');
-    //There was an issue that the submit button on our form would cause.
-    //Its gone, but still kept this for now.
-    e.stopImmediatePropagation();
-    e.preventDefault();
-
-    
-
-});
 
 function fillTable(){
 
@@ -203,6 +193,23 @@ function fillTable(){
 
 }
 
+function getFormDetails(){
+
+    const getFormTitle = document.getElementById('Title').value;
+    const getFormAuthor = document.getElementById('Author').value;
+    const getFormPages = document.getElementById('Pages').value;
+    const getFormStatus = document.getElementById('Status').value;
+
+
+    addBookToLibrary(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
+
+
+
+    // console.log(`${getFormTitle} and ${getFormAuthor} and ${getFormPages} and ${getFormStatus}`);
+
+
+
+}
 
 
 
@@ -211,3 +218,24 @@ function fillTable(){
 
 
 btnDisplay.addEventListener('click', fillTable);
+
+
+submitBtn.addEventListener('click', (e)=>{
+
+    // alert('STOP');
+    //There was an issue that the submit button on our form would cause.
+    //Its gone, but still kept this for now.
+
+
+    getFormDetails();
+    tableBody.innerHTML='';
+    diag.close();
+    fillTable();
+
+
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    
+
+});

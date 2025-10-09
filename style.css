@@ -12,7 +12,7 @@
 .mainContainer{
     width: 750;
     height: 100vh;
-    border: red 2px solid;
+    /* border: red 2px solid; */
 
     display: grid;
     grid-template-rows: 100px 400px;

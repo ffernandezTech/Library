@@ -69,7 +69,7 @@ table{
     align-self:flex-start;
 
     border-collapse: collapse;
-    /* display: none; */
+    display:none;
     
 }
 th{

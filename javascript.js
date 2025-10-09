@@ -1,3 +1,27 @@
+
+
+const mainDisplay = document.querySelector('.mainContainer');
+
+
+// Elements that we need to get in order to add a new book
+const newBookBtn = document.getElementById('CreateBook');
+const submitBtn = document.querySelector('.submitBtn');
+const diag = document.querySelector('dialog');
+const myform = document.getElementById('bookEntry');
+const myFormCss = window.getComputedStyle(myform);
+
+
+// elements are need to get in order to display out current library.
+const btnDisplay = document.getElementById('DisplayLibrary');
+const myTable = document.querySelector('table');
+//Dont think this compute style is required.
+const myTableCss= window.getComputedStyle(myTable);
+const tableBody = document.querySelector('tbody');
+
+
+
+
+
 const myLibrary = [];
 
 
@@ -29,17 +53,6 @@ Book.prototype.changeStatus = function(){
     }
 }
 
-
-
-
-
-
-
-// const book1 = new Book('Eragon', 'Christopher Paolini', 450, 'read');
-
-// myLibrary.push(book1);
-
-
 function addBookToLibrary(name, author, pages, status){
 
     let entry = new Book(name, author, pages, status);
@@ -55,57 +68,19 @@ addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 
 
-
-
-// myLibrary.forEach( item =>{
-//     console.log(`ID: ${item.id}, Title: ${item.name}, Author: ${item.author} ,Number of Pages: ${item.pages},
-//         Status: ${item.status} 
-//         `)
-// });
-
-
-const mainDisplay = document.querySelector('.mainContainer');
-const newBookBtn = document.getElementById('CreateBook');
-const submitBtn = document.querySelector('.submitBtn');
-const btnDisplay = document.getElementById('DisplayLibrary');
-const diag = document.querySelector('dialog');
-
-
-
-const myform = document.getElementById('bookEntry');
-const myFormCss = window.getComputedStyle(myform);
-
-const myTable = document.querySelector('table');
-const myTableCss= window.getComputedStyle(myTable);
-
-
-
 newBookBtn.addEventListener('click', (e)=>{
 
-    // if(myFormCss.getPropertyValue('display') === 'none')
-    // {
-    //     // alert('display test');
-    //     myform.style.display= 'block';
-    // }
-    // else
-    // {
-    //     //  alert('its block');
-    //      myform.style.display='none';
-    // }
-    // e.stopImmediatePropagation();
-   
+  
+    //Our form is in a diaglog element that is set to hidden by default.
+    // In order to display it this is all we need.
     diag.showModal();
-
-
-
-
-
-
 });
 
 submitBtn.addEventListener('click', (e)=>{
 
     // alert('STOP');
+    //There was an issue that the submit button on our form would cause.
+    //Its gone, but still kept this for now.
     e.stopImmediatePropagation();
     e.preventDefault();
 
@@ -113,82 +88,19 @@ submitBtn.addEventListener('click', (e)=>{
 
 });
 
-const tableBody = document.querySelector('tbody');
-
-// function fillTable(){
-
-
-//     if(myTableCss.getPropertyValue('display') === 'none')
-//     {
-//         myTable.style.display = 'block';
-        
-//          myLibrary.forEach( item , index =>{
-          
-            
-//             const row = document.createElement('tr');
-
-//             const cell1 = document.createElement('td');
-//             cell1.textContent = item.id;
-//             row.appendChild(cell1);
-
-//             const cell2 = document.createElement('td');
-//             cell2.textContent = item.name;
-//             row.appendChild(cell2);
-
-//             const cell3 = document.createElement('td');
-//             cell3.textContent = item.author;
-//             row.appendChild(cell3);
-
-//             const cell4 = document.createElement('td');
-//             cell4.textContent = item.pages;
-//             row.appendChild(cell4);
-
-//             const cell5 = document.createElement('td');
-//             cell5.textContent = item.status;
-//             row.appendChild(cell5);
-
-//             const cell6 = document.createElement('td');
-//             cell6.textContent = 
-
-//             tableBody.appendChild(row);
-//         });
-
-
-//     }
-//     else{
-//         myTable.style.display = 'none';
-//     }
-
-
-//     console.log(myLibrary);
-       
-
-//         // alert('Currently in function');
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-// btnDisplay.addEventListener('click', fillTable);
-
-
-
-
 function fillTable(){
+
+    myTable.style.display = 'block';
          myLibrary.forEach( (item , index) =>{
           
             // console.log(myLibrary.length)
 
             // console.log(myLibrary);
+
+
             const row = document.createElement('tr');
+
+            //Maybe a css code of nth child would have been better to do this instead of how I did.
             row.setAttribute('id', 'row'+ index);
             if(index%2 !== 0)
             {
@@ -201,6 +113,8 @@ function fillTable(){
                 row.setAttribute('style', 'background:lightblue');
             }
 
+
+            
             const cell1 = document.createElement('td');
             cell1.textContent = item.id;
             row.appendChild(cell1);
@@ -286,11 +200,14 @@ function fillTable(){
 
        
 
-        // alert('Currently in function');
 
 }
 
-fillTable();
 
 
 
+
+
+
+
+btnDisplay.addEventListener('click', fillTable);

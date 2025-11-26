@@ -29,7 +29,7 @@ class myLibrary{
        
     }
    static get myBooks(){
-        return myLibrary.myLibraryCollection;
+        return this.myLibraryCollection;
     }
     static myBookInfo(bookInfo){
       this.myLibraryCollection.push(bookInfo);
@@ -47,173 +47,142 @@ class myBook extends myLibrary{
         this.author = author;
         this.pages = pages;
         this.status = status;
-        const bookInfo = [this.id,this.name, this.author, this.pages, this.status];
+        let bookInfo = [this.id,this.name, this.author, this.pages, this.status];
         myLibrary.myBookInfo(bookInfo);
       
     }
- 
-  
-  
-
-
-}
-
-const book1 = new myBook('Pride','Jane','213','read');
-const book2 = new myBook('One Piece','Oda','1000000000','read');
-
-
-function Book(name, author, pages, status){
-
-    
-    this.name = name,
-    this.author = author,
-    this.pages = pages,
-    this.status = status,
-    this.sayInfo = function (){
-    console.log(`The book ${this.name} by ${this.author} has ${this.pages} and you have ${this.status} it`)
-
-    };
-
-}
-
-Book.prototype.changeStatus = function(){
-
-    // console.log('prototype');
-
-    if(this.status ==='read')
-    {
-        return this.status = 'reading';
+    get getReadStatus(){
+      return this.status;
     }
-    else if(this.status === 'reading')
+    set setReadStatus(newStatus)
     {
-        return this.status = 'read';
+        this.status = newStatus;
     }
+    updateBookChanges(){
+        bookInfo = [this.id,this.name, this.author, this.pages, this.status];
+        // what Im thinking get the first row or items by index compare it to the currently selected ID. or something and set that index item to the new bookInfo
+
+    }
+  
+  
+
+
 }
 
-function addBookToLibrary(name, author, pages, status){
-
-    let entry = new Book(name, author, pages, status);
-    myLibrary.push(entry);
-
-    
-
-}
-
-addBookToLibrary('Eragon', 'Christopher Paolini', 450, 'read');
-addBookToLibrary('Marsfield Park', 'Jane Austen', 500, 'reading');
-addBookToLibrary('Pride and Prejudice', 'Jane Austen', 500, 'read');
+const book1 = new myBook('Eragon', 'Christopher Paolini', 450, 'read');
+const book2 = new myBook('Marsfield Park', 'Jane Austen', 500, 'reading');
+const book3 = new myBook('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 
-
-newBookBtn.addEventListener('click', (e)=>{
+// newBookBtn.addEventListener('click', (e)=>{
 
   
-    //Our form is in a diaglog element that is set to hidden by default.
-    // In order to display it this is all we need.
-    diag.showModal();
-});
+//     //Our form is in a diaglog element that is set to hidden by default.
+//     // In order to display it this is all we need.
+//     diag.showModal();
+// });
 
 
 
-function fillTable(){
+// function fillTable(){
 
-    myTable.style.display = 'block';
-         myLibrary.forEach( (item , index) =>{
+//     myTable.style.display = 'block';
+//          myLibrary.forEach( (item , index) =>{
           
-            // console.log(myLibrary.length)
+//             // console.log(myLibrary.length)
 
-            // console.log(myLibrary);
-
-
-            const row = document.createElement('tr');
-
-            //Maybe a css code of nth child would have been better to do this instead of how I did.
-            row.setAttribute('id', 'row'+ index);
-            if(index%2 !== 0)
-            {
-                row.setAttribute('style', 'background:lightblue');
+//             // console.log(myLibrary);
 
 
-            }
-            else if(myLibrary.length<2 && index === 1)
-            {
-                row.setAttribute('style', 'background:lightblue');
-            }
+//             const row = document.createElement('tr');
+
+//             //Maybe a css code of nth child would have been better to do this instead of how I did.
+//             row.setAttribute('id', 'row'+ index);
+//             if(index%2 !== 0)
+//             {
+//                 row.setAttribute('style', 'background:lightblue');
+
+
+//             }
+//             else if(myLibrary.length<2 && index === 1)
+//             {
+//                 row.setAttribute('style', 'background:lightblue');
+//             }
 
 
             
-            const cell1 = document.createElement('td');
-            cell1.textContent = item.id;
-            row.appendChild(cell1);
+//             const cell1 = document.createElement('td');
+//             cell1.textContent = item.id;
+//             row.appendChild(cell1);
 
-            const cell2 = document.createElement('td');
-            cell2.textContent = item.name;
-            row.appendChild(cell2);
+//             const cell2 = document.createElement('td');
+//             cell2.textContent = item.name;
+//             row.appendChild(cell2);
 
-            const cell3 = document.createElement('td');
-            cell3.textContent = item.author;
-            row.appendChild(cell3);
+//             const cell3 = document.createElement('td');
+//             cell3.textContent = item.author;
+//             row.appendChild(cell3);
 
-            const cell4 = document.createElement('td');
-            cell4.textContent = item.pages;
-            row.appendChild(cell4);
+//             const cell4 = document.createElement('td');
+//             cell4.textContent = item.pages;
+//             row.appendChild(cell4);
 
-            const cell5 = document.createElement('td');
-            cell5.textContent = item.status;
-            row.appendChild(cell5);
+//             const cell5 = document.createElement('td');
+//             cell5.textContent = item.status;
+//             row.appendChild(cell5);
 
-            const cell6 = document.createElement('td');
-            let btn = document.createElement('input');
-            btn.type= 'button';
-            btn.className = 'btn'+index;
-            btn.value = 'Delete';
+//             const cell6 = document.createElement('td');
+//             let btn = document.createElement('input');
+//             btn.type= 'button';
+//             btn.className = 'btn'+index;
+//             btn.value = 'Delete';
         
-            btn.addEventListener('click', () =>{
+//             btn.addEventListener('click', () =>{
 
 
-                // console.log(myLibrary[index]);
-                myLibrary.splice(index,1)
-                // console.log(myLibrary[index]);
-            //   tableBody.deleteRow(index);
+//                 // console.log(myLibrary[index]);
+//                 myLibrary.splice(index,1)
+//                 // console.log(myLibrary[index]);
+//             //   tableBody.deleteRow(index);
 
 
-            //This works, but I dont like it. Basically clearning and recreating
-            //The whole table with the changes made...
-              tableBody.innerHTML='';
-              fillTable();
+//             //This works, but I dont like it. Basically clearning and recreating
+//             //The whole table with the changes made...
+//               tableBody.innerHTML='';
+//               fillTable();
 
-            //   console.log(index);
+//             //   console.log(index);
                 
 
 
                 
-                // alert('hello ' + index);
+//                 // alert('hello ' + index);
 
 
-            })
-            cell6.appendChild(btn);
-            row.appendChild(cell6);
+//             })
+//             cell6.appendChild(btn);
+//             row.appendChild(cell6);
 
 
-            const cell7 = document.createElement('td');
-            let btn2 = document.createElement('input');
-            btn2.type = 'button';
-            btn2.className ='btn2-'+index;
-            btn2.value = 'Change Status';
-            btn2.addEventListener('click', ()=>{
+//             const cell7 = document.createElement('td');
+//             let btn2 = document.createElement('input');
+//             btn2.type = 'button';
+//             btn2.className ='btn2-'+index;
+//             btn2.value = 'Change Status';
+//             btn2.addEventListener('click', ()=>{
 
-                // console.log(item.name);
-                item.changeStatus();
+//                 // console.log(item.name);
+//                 item.changeStatus();
 
-                // console.log(myLibrary[index]);
+//                 // console.log(myLibrary[index]);
 
-                tableBody.innerHTML='';
-                fillTable();
-            })
+//                 tableBody.innerHTML='';
+//                 fillTable();
+//             })
 
 
-            cell7.append(btn2);
-            row.appendChild(cell7);
+//             cell7.append(btn2);
+//             row.appendChild(cell7);
 
 
             
@@ -222,57 +191,57 @@ function fillTable(){
 
          
 
-            tableBody.appendChild(row);
-        });
+//             tableBody.appendChild(row);
+//         });
 
        
 
 
-}
+// }
 
-function getFormDetails(){
+// function getFormDetails(){
 
-    const getFormTitle = document.getElementById('Title').value;
-    const getFormAuthor = document.getElementById('Author').value;
-    const getFormPages = document.getElementById('Pages').value;
-    const getFormStatus = document.getElementById('Status').value;
-
-
-    addBookToLibrary(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
+//     const getFormTitle = document.getElementById('Title').value;
+//     const getFormAuthor = document.getElementById('Author').value;
+//     const getFormPages = document.getElementById('Pages').value;
+//     const getFormStatus = document.getElementById('Status').value;
 
 
-
-    // console.log(`${getFormTitle} and ${getFormAuthor} and ${getFormPages} and ${getFormStatus}`);
+//     addBookToLibrary(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
 
 
 
-}
+//     // console.log(`${getFormTitle} and ${getFormAuthor} and ${getFormPages} and ${getFormStatus}`);
 
 
+
+// }
 
 
 
 
 
-btnDisplay.addEventListener('click', fillTable);
 
 
-submitBtn.addEventListener('click', (e)=>{
-
-    // alert('STOP');
-    //There was an issue that the submit button on our form would cause.
-    //Its gone, but still kept this for now.
+// btnDisplay.addEventListener('click', fillTable);
 
 
-    getFormDetails();
-    tableBody.innerHTML='';
-    diag.close();
-    fillTable();
+// submitBtn.addEventListener('click', (e)=>{
+
+//     // alert('STOP');
+//     //There was an issue that the submit button on our form would cause.
+//     //Its gone, but still kept this for now.
 
 
-    e.stopImmediatePropagation();
-    e.preventDefault();
+//     getFormDetails();
+//     tableBody.innerHTML='';
+//     diag.close();
+//     fillTable();
+
+
+//     e.stopImmediatePropagation();
+//     e.preventDefault();
 
     
 
-});
+// });

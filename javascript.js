@@ -19,15 +19,52 @@ const myTableCss= window.getComputedStyle(myTable);
 const tableBody = document.querySelector('tbody');
 
 
+// Below kind of working class for my books
+class myLibrary{
+
+    static myLibraryCollection = [];
+
+    constructor(){
+       this.id = crypto.randomUUID();
+       
+    }
+   static get myBooks(){
+        return myLibrary.myLibraryCollection;
+    }
+    static myBookInfo(bookInfo){
+      this.myLibraryCollection.push(bookInfo);
+    }
+    
+
+}
 
 
+class myBook extends myLibrary{
 
-const myLibrary = [];
+    constructor(name, author, pages, status){
+        super();
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+        const bookInfo = [this.id,this.name, this.author, this.pages, this.status];
+        myLibrary.myBookInfo(bookInfo);
+      
+    }
+ 
+  
+  
+
+
+}
+
+const book1 = new myBook('Pride','Jane','213','read');
+const book2 = new myBook('One Piece','Oda','1000000000','read');
 
 
 function Book(name, author, pages, status){
 
-    this.id = crypto.randomUUID();
+    
     this.name = name,
     this.author = author,
     this.pages = pages,

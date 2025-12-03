@@ -19,21 +19,25 @@ const myTableCss= window.getComputedStyle(myTable);
 const tableBody = document.querySelector('tbody');
 
 
+
+
 // Below kind of working class for my books
 class myLibrary{
 
-    static myLibraryCollection = [];
+    static #myLibraryCollection = [];
 
     constructor(){
        this.id = crypto.randomUUID();
        
     }
    static get myBooks(){
-        return this.myLibraryCollection;
+        return this.#myLibraryCollection;
     }
     static myBookInfo(bookInfo){
-      this.myLibraryCollection.push(bookInfo);
+      this.#myLibraryCollection.push(bookInfo);
     }
+
+  
     
 
 }
@@ -47,26 +51,10 @@ class myBook extends myLibrary{
         this.author = author;
         this.pages = pages;
         this.status = status;
-        let bookInfo = [this.id,this.name, this.author, this.pages, this.status];
+        let bookInfo = {id: this.id, name:this.name, author:this.author,pages: this.pages, status:this.status};
         myLibrary.myBookInfo(bookInfo);
       
     }
-    get getReadStatus(){
-      return this.status;
-    }
-    set setReadStatus(newStatus)
-    {
-        this.status = newStatus;
-    }
-    updateBookChanges(){
-        bookInfo = [this.id,this.name, this.author, this.pages, this.status];
-        // what Im thinking get the first row or items by index compare it to the currently selected ID. or something and set that index item to the new bookInfo
-
-    }
-  
-  
-
-
 }
 
 const book1 = new myBook('Eragon', 'Christopher Paolini', 450, 'read');
@@ -74,13 +62,87 @@ const book2 = new myBook('Marsfield Park', 'Jane Austen', 500, 'reading');
 const book3 = new myBook('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 
-// newBookBtn.addEventListener('click', (e)=>{
+
+
+class tableRows{
+
+    constructor(bookID, bookName, bookAuthor, bookPages, bookStatus){
+    
+
+        const bookROW = document.createElement('tr');
+
+        const idCell = document.createElement('td');
+        idCell.textContent = bookID;
+        bookROW.appendChild(idCell);
+
+        const nameCell = document.createElement('td');
+        nameCell.textContent = bookName;
+        bookROW.appendChild(nameCell);
+
+        const authorCell = document.createElement('td');
+        authorCell.textContent= bookAuthor;
+        bookROW.appendChild(authorCell);
+
+        const pagesCell = document.createElement('td');
+        pagesCell.textContent = bookPages;
+        bookROW.appendChild(pagesCell);
+
+        const statusCell = document.createElement('td');
+        statusCell.textContent = bookStatus;
+        bookROW.appendChild(statusCell);
+
+        const deleteCell = document.createElement('td');
+         let btnDelete = document.createElement('input');
+            btnDelete.type= 'button';
+            btnDelete.className = 'btbDelete';
+            btnDelete.value = 'Delete';
+        deleteCell.appendChild(btnDelete);
+        bookROW.appendChild(deleteCell);
+    
+        const changeStatusCell = document.createElement('td');
+         let btnChangeStatus = document.createElement('input');
+            btnChangeStatus.type= 'button';
+            btnChangeStatus.className = 'btnChangeStatus';
+            btnChangeStatus.value = 'Change Status';
+        changeStatusCell.appendChild(btnChangeStatus);
+        bookROW.appendChild(changeStatusCell);
+    
+
+
+        tableBody.appendChild(bookROW);
+
+
+        
+        
+    }
+
+}
+
+newBookBtn.addEventListener('click', (e)=>{
 
   
-//     //Our form is in a diaglog element that is set to hidden by default.
-//     // In order to display it this is all we need.
-//     diag.showModal();
-// });
+    //Our form is in a diaglog element that is set to hidden by default.
+    // In order to display it this is all we need.
+    diag.showModal();
+});
+
+function getTableRowInfo(){
+
+    // let mybooks = myLibrary.myBooks;
+    // console.log(mybooks);
+    myLibrary.myBooks.forEach(bookDetail => {
+        createTableRow(bookDetail.id, bookDetail.name, bookDetail.author, bookDetail.pages, bookDetail.status)
+    //    console.log(" THe length of mybooks"+myLibrary.myBooks.length);
+    });
+
+
+}
+function createTableRow(bookID, bookName, bookAuthor, bookPages, bookStatus){
+
+    const row = new tableRows(bookID, bookName, bookAuthor, bookPages, bookStatus);
+    
+}
+
 
 
 
@@ -199,49 +261,51 @@ const book3 = new myBook('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 // }
 
-// function getFormDetails(){
+function getFormDetails(){
 
-//     const getFormTitle = document.getElementById('Title').value;
-//     const getFormAuthor = document.getElementById('Author').value;
-//     const getFormPages = document.getElementById('Pages').value;
-//     const getFormStatus = document.getElementById('Status').value;
-
-
-//     addBookToLibrary(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
+    const getFormTitle = document.getElementById('Title').value;
+    const getFormAuthor = document.getElementById('Author').value;
+    const getFormPages = document.getElementById('Pages').value;
+    const getFormStatus = document.getElementById('Status').value;
 
 
-
-//     // console.log(`${getFormTitle} and ${getFormAuthor} and ${getFormPages} and ${getFormStatus}`);
-
+    const newBook = new myBook(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
 
 
-// }
+}
+
+
+function fillTable(){
+    myTable.style.display = 'block';
+    getTableRowInfo();
+
+
+}
 
 
 
 
+btnDisplay.addEventListener('click', fillTable);
 
 
+submitBtn.addEventListener('click', (e)=>{
 
-// btnDisplay.addEventListener('click', fillTable);
-
-
-// submitBtn.addEventListener('click', (e)=>{
-
-//     // alert('STOP');
-//     //There was an issue that the submit button on our form would cause.
-//     //Its gone, but still kept this for now.
+    // alert('STOP');
+    //There was an issue that the submit button on our form would cause.
+    //Its gone, but still kept this for now.
 
 
-//     getFormDetails();
-//     tableBody.innerHTML='';
-//     diag.close();
-//     fillTable();
+    getFormDetails();
+    tableBody.innerHTML='';
+    diag.close();
 
 
-//     e.stopImmediatePropagation();
-//     e.preventDefault();
+    // fillTable();
+
+
+    e.stopImmediatePropagation();
+    e.preventDefault();
 
     
 
-// });
+});

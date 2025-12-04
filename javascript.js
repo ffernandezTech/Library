@@ -66,8 +66,9 @@ const book3 = new myBook('Pride and Prejudice', 'Jane Austen', 500, 'read');
 
 class tableRows{
 
-    constructor(bookID, bookName, bookAuthor, bookPages, bookStatus){
-    
+    constructor(bookID, bookName, bookAuthor, bookPages, bookStatus, index){
+        
+        const arrayIndex = index;
 
         const bookROW = document.createElement('tr');
 
@@ -96,6 +97,12 @@ class tableRows{
             btnDelete.type= 'button';
             btnDelete.className = 'btbDelete';
             btnDelete.value = 'Delete';
+        btnDelete.addEventListener('click',() =>{
+            myLibrary.myBooks.splice(arrayIndex,1)
+            tableBody.innerHTML='';
+            fillTable();
+
+        })
         deleteCell.appendChild(btnDelete);
         bookROW.appendChild(deleteCell);
     
@@ -104,6 +111,19 @@ class tableRows{
             btnChangeStatus.type= 'button';
             btnChangeStatus.className = 'btnChangeStatus';
             btnChangeStatus.value = 'Change Status';
+
+              btnChangeStatus.addEventListener('click', ()=>{
+
+                if(bookStatus === 'read'){
+                    
+                    myLibrary.myBooks[index].status = 'not read';
+                }
+                else{
+                    myLibrary.myBooks[arrayIndex].status = 'read';
+                }
+                tableBody.innerHTML='';
+                fillTable();
+            })
         changeStatusCell.appendChild(btnChangeStatus);
         bookROW.appendChild(changeStatusCell);
     
@@ -130,136 +150,21 @@ function getTableRowInfo(){
 
     // let mybooks = myLibrary.myBooks;
     // console.log(mybooks);
-    myLibrary.myBooks.forEach(bookDetail => {
-        createTableRow(bookDetail.id, bookDetail.name, bookDetail.author, bookDetail.pages, bookDetail.status)
+    myLibrary.myBooks.forEach((bookDetail, index)  => {
+       
+        createTableRow(bookDetail.id, bookDetail.name, bookDetail.author, bookDetail.pages, bookDetail.status, index)
     //    console.log(" THe length of mybooks"+myLibrary.myBooks.length);
+
+
     });
 
 
 }
-function createTableRow(bookID, bookName, bookAuthor, bookPages, bookStatus){
+function createTableRow(bookID, bookName, bookAuthor, bookPages, bookStatus, index){
 
-    const row = new tableRows(bookID, bookName, bookAuthor, bookPages, bookStatus);
+    const row = new tableRows(bookID, bookName, bookAuthor, bookPages, bookStatus, index);
     
 }
-
-
-
-
-// function fillTable(){
-
-//     myTable.style.display = 'block';
-//          myLibrary.forEach( (item , index) =>{
-          
-//             // console.log(myLibrary.length)
-
-//             // console.log(myLibrary);
-
-
-//             const row = document.createElement('tr');
-
-//             //Maybe a css code of nth child would have been better to do this instead of how I did.
-//             row.setAttribute('id', 'row'+ index);
-//             if(index%2 !== 0)
-//             {
-//                 row.setAttribute('style', 'background:lightblue');
-
-
-//             }
-//             else if(myLibrary.length<2 && index === 1)
-//             {
-//                 row.setAttribute('style', 'background:lightblue');
-//             }
-
-
-            
-//             const cell1 = document.createElement('td');
-//             cell1.textContent = item.id;
-//             row.appendChild(cell1);
-
-//             const cell2 = document.createElement('td');
-//             cell2.textContent = item.name;
-//             row.appendChild(cell2);
-
-//             const cell3 = document.createElement('td');
-//             cell3.textContent = item.author;
-//             row.appendChild(cell3);
-
-//             const cell4 = document.createElement('td');
-//             cell4.textContent = item.pages;
-//             row.appendChild(cell4);
-
-//             const cell5 = document.createElement('td');
-//             cell5.textContent = item.status;
-//             row.appendChild(cell5);
-
-//             const cell6 = document.createElement('td');
-//             let btn = document.createElement('input');
-//             btn.type= 'button';
-//             btn.className = 'btn'+index;
-//             btn.value = 'Delete';
-        
-//             btn.addEventListener('click', () =>{
-
-
-//                 // console.log(myLibrary[index]);
-//                 myLibrary.splice(index,1)
-//                 // console.log(myLibrary[index]);
-//             //   tableBody.deleteRow(index);
-
-
-//             //This works, but I dont like it. Basically clearning and recreating
-//             //The whole table with the changes made...
-//               tableBody.innerHTML='';
-//               fillTable();
-
-//             //   console.log(index);
-                
-
-
-                
-//                 // alert('hello ' + index);
-
-
-//             })
-//             cell6.appendChild(btn);
-//             row.appendChild(cell6);
-
-
-//             const cell7 = document.createElement('td');
-//             let btn2 = document.createElement('input');
-//             btn2.type = 'button';
-//             btn2.className ='btn2-'+index;
-//             btn2.value = 'Change Status';
-//             btn2.addEventListener('click', ()=>{
-
-//                 // console.log(item.name);
-//                 item.changeStatus();
-
-//                 // console.log(myLibrary[index]);
-
-//                 tableBody.innerHTML='';
-//                 fillTable();
-//             })
-
-
-//             cell7.append(btn2);
-//             row.appendChild(cell7);
-
-
-            
-
-
-
-         
-
-//             tableBody.appendChild(row);
-//         });
-
-       
-
-
-// }
 
 function getFormDetails(){
 
@@ -271,13 +176,32 @@ function getFormDetails(){
 
     const newBook = new myBook(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
 
+    getFormTitle.value = '';
+    getFormAuthor.value = '';
+    getFormTitle.value = '';
+    getFormTitle.value = '';
+    getFormTitle.value = '';
+
 
 }
 
 
 function fillTable(){
-    myTable.style.display = 'block';
+    
+   
     getTableRowInfo();
+}
+
+function controlDisplayOfTable(){
+   
+    
+   
+        myTable.style.display = 'block';
+        tableBody.innerHTML='';
+        getTableRowInfo();
+        alreadyDisplay = true;
+    
+    
 
 
 }
@@ -285,7 +209,7 @@ function fillTable(){
 
 
 
-btnDisplay.addEventListener('click', fillTable);
+btnDisplay.addEventListener('click', controlDisplayOfTable);
 
 
 submitBtn.addEventListener('click', (e)=>{
@@ -296,10 +220,9 @@ submitBtn.addEventListener('click', (e)=>{
 
 
     getFormDetails();
-    tableBody.innerHTML='';
+   
     diag.close();
-
-
+    controlDisplayOfTable();
     // fillTable();
 
 

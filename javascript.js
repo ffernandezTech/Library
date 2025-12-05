@@ -13,6 +13,7 @@ const myFormCss = window.getComputedStyle(myform);
 
 // elements are need to get in order to display out current library.
 const btnDisplay = document.getElementById('DisplayLibrary');
+const btnCancel = document.querySelector('.cancelBtn');
 const myTable = document.querySelector('table');
 //Dont think this compute style is required.
 const myTableCss= window.getComputedStyle(myTable);
@@ -168,20 +169,19 @@ function createTableRow(bookID, bookName, bookAuthor, bookPages, bookStatus, ind
 
 function getFormDetails(){
 
-    const getFormTitle = document.getElementById('Title').value;
-    const getFormAuthor = document.getElementById('Author').value;
-    const getFormPages = document.getElementById('Pages').value;
-    const getFormStatus = document.getElementById('Status').value;
+    let getFormTitle = document.getElementById('Title').value;
+    let getFormAuthor = document.getElementById('Author').value;
+    let getFormPages = document.getElementById('Pages').value;
+    let getFormStatus = document.getElementById('Status').value;
 
+    
 
     const newBook = new myBook(getFormTitle, getFormAuthor, getFormPages, getFormStatus);
 
-    getFormTitle.value = '';
-    getFormAuthor.value = '';
-    getFormTitle.value = '';
-    getFormTitle.value = '';
-    getFormTitle.value = '';
-
+    getFormTitle = document.getElementById('Title').value = '';
+    getFormAuthor = document.getElementById('Author').value = '';
+    getFormPages = document.getElementById('Pages').value = '';
+    getFormStatus = document.getElementById('Status').value = '';
 
 }
 
@@ -206,10 +206,23 @@ function controlDisplayOfTable(){
 
 }
 
+btnCancel.addEventListener('click',()=>{
 
+    let getFormTitle = document.getElementById('Title').value ='';
+    let getFormAuthor = document.getElementById('Author').value ='';
+    let getFormPages = document.getElementById('Pages').value ='';
+    let getFormStatus = document.getElementById('Status').value ='';
+
+    
+    diag.close();
+
+
+
+})
 
 
 btnDisplay.addEventListener('click', controlDisplayOfTable);
+
 
 
 submitBtn.addEventListener('click', (e)=>{
@@ -217,6 +230,8 @@ submitBtn.addEventListener('click', (e)=>{
     // alert('STOP');
     //There was an issue that the submit button on our form would cause.
     //Its gone, but still kept this for now.
+
+
 
 
     getFormDetails();
